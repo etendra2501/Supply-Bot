@@ -1,17 +1,3 @@
-### Supply-Bot-A-Robot-which-is-used-during-the-disaster-for-supply-the-Medical-aid-and-Food
+### e-Yantra-Robotics-Competition2019-20
 
-<a href="https://www.canva.com/design/DAESXVA6wIo/7e_bVoZPg86LasxuuDRGgQ/view?utm_content=DAESXVA6wIo&utm_campaign=designshare&utm_medium=link&utm_source=publishsharelink">
-
-Event: IIT Bombay EYANTRA Competition 2019-20. Grid based mapping and navigation of a drone and then performing specified tasks over a given arena.
-
-
-
-
-
-
-
-
-
-
-<a href="https://www.canva.com/design/DAESXVA6wIo/7e_bVoZPg86LasxuuDRGgQ/view?utm_content=DAESXVA6wIo&utm_campaign=designshare&utm_medium=link&utm_source=publishsharelink">
-### Website
+e-Yantra Robotics Competition (eYRC) is a competition organised by IIT,Bombay for undergraduate students in science and colleges. e-Yantra is a project sponsored by MHRD, Government of India, under the National Mission on Education through ICT (NMEICT)
