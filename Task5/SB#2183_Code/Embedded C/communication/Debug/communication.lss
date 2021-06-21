@@ -1,0 +1,631 @@
+
+communication.elf:     file format elf32-avr
+
+Sections:
+Idx Name          Size      VMA       LMA       File off  Algn
+  0 .data         00000020  00800100  00000412  000004a6  2**0
+                  CONTENTS, ALLOC, LOAD, DATA
+  1 .text         00000412  00000000  00000000  00000094  2**1
+                  CONTENTS, ALLOC, LOAD, READONLY, CODE
+  2 .bss          00000108  00800120  00800120  000004c6  2**0
+                  ALLOC
+  3 .comment      00000030  00000000  00000000  000004c6  2**0
+                  CONTENTS, READONLY
+  4 .note.gnu.avr.deviceinfo 00000040  00000000  00000000  000004f8  2**2
+                  CONTENTS, READONLY
+  5 .debug_aranges 00000100  00000000  00000000  00000538  2**0
+                  CONTENTS, READONLY, DEBUGGING
+  6 .debug_info   00001025  00000000  00000000  00000638  2**0
+                  CONTENTS, READONLY, DEBUGGING
+  7 .debug_abbrev 00000867  00000000  00000000  0000165d  2**0
+                  CONTENTS, READONLY, DEBUGGING
+  8 .debug_line   00000890  00000000  00000000  00001ec4  2**0
+                  CONTENTS, READONLY, DEBUGGING
+  9 .debug_frame  00000250  00000000  00000000  00002754  2**2
+                  CONTENTS, READONLY, DEBUGGING
+ 10 .debug_str    000005e6  00000000  00000000  000029a4  2**0
+                  CONTENTS, READONLY, DEBUGGING
+ 11 .debug_loc    00000695  00000000  00000000  00002f8a  2**0
+                  CONTENTS, READONLY, DEBUGGING
+ 12 .debug_ranges 00000120  00000000  00000000  0000361f  2**0
+                  CONTENTS, READONLY, DEBUGGING
+
+Disassembly of section .text:
+
+00000000 <__vectors>:
+   0:	0c 94 34 00 	jmp	0x68	; 0x68 <__ctors_end>
+   4:	0c 94 51 00 	jmp	0xa2	; 0xa2 <__bad_interrupt>
+   8:	0c 94 51 00 	jmp	0xa2	; 0xa2 <__bad_interrupt>
+   c:	0c 94 51 00 	jmp	0xa2	; 0xa2 <__bad_interrupt>
+  10:	0c 94 51 00 	jmp	0xa2	; 0xa2 <__bad_interrupt>
+  14:	0c 94 51 00 	jmp	0xa2	; 0xa2 <__bad_interrupt>
+  18:	0c 94 51 00 	jmp	0xa2	; 0xa2 <__bad_interrupt>
+  1c:	0c 94 51 00 	jmp	0xa2	; 0xa2 <__bad_interrupt>
+  20:	0c 94 51 00 	jmp	0xa2	; 0xa2 <__bad_interrupt>
+  24:	0c 94 51 00 	jmp	0xa2	; 0xa2 <__bad_interrupt>
+  28:	0c 94 51 00 	jmp	0xa2	; 0xa2 <__bad_interrupt>
+  2c:	0c 94 51 00 	jmp	0xa2	; 0xa2 <__bad_interrupt>
+  30:	0c 94 51 00 	jmp	0xa2	; 0xa2 <__bad_interrupt>
+  34:	0c 94 51 00 	jmp	0xa2	; 0xa2 <__bad_interrupt>
+  38:	0c 94 51 00 	jmp	0xa2	; 0xa2 <__bad_interrupt>
+  3c:	0c 94 51 00 	jmp	0xa2	; 0xa2 <__bad_interrupt>
+  40:	0c 94 51 00 	jmp	0xa2	; 0xa2 <__bad_interrupt>
+  44:	0c 94 51 00 	jmp	0xa2	; 0xa2 <__bad_interrupt>
+  48:	0c 94 53 00 	jmp	0xa6	; 0xa6 <__vector_18>
+  4c:	0c 94 88 00 	jmp	0x110	; 0x110 <__vector_19>
+  50:	0c 94 51 00 	jmp	0xa2	; 0xa2 <__bad_interrupt>
+  54:	0c 94 51 00 	jmp	0xa2	; 0xa2 <__bad_interrupt>
+  58:	0c 94 51 00 	jmp	0xa2	; 0xa2 <__bad_interrupt>
+  5c:	0c 94 51 00 	jmp	0xa2	; 0xa2 <__bad_interrupt>
+  60:	0c 94 51 00 	jmp	0xa2	; 0xa2 <__bad_interrupt>
+  64:	0c 94 51 00 	jmp	0xa2	; 0xa2 <__bad_interrupt>
+
+00000068 <__ctors_end>:
+  68:	11 24       	eor	r1, r1
+  6a:	1f be       	out	0x3f, r1	; 63
+  6c:	cf ef       	ldi	r28, 0xFF	; 255
+  6e:	d8 e0       	ldi	r29, 0x08	; 8
+  70:	de bf       	out	0x3e, r29	; 62
+  72:	cd bf       	out	0x3d, r28	; 61
+
+00000074 <__do_copy_data>:
+  74:	11 e0       	ldi	r17, 0x01	; 1
+  76:	a0 e0       	ldi	r26, 0x00	; 0
+  78:	b1 e0       	ldi	r27, 0x01	; 1
+  7a:	e2 e1       	ldi	r30, 0x12	; 18
+  7c:	f4 e0       	ldi	r31, 0x04	; 4
+  7e:	02 c0       	rjmp	.+4      	; 0x84 <__do_copy_data+0x10>
+  80:	05 90       	lpm	r0, Z+
+  82:	0d 92       	st	X+, r0
+  84:	a0 32       	cpi	r26, 0x20	; 32
+  86:	b1 07       	cpc	r27, r17
+  88:	d9 f7       	brne	.-10     	; 0x80 <__do_copy_data+0xc>
+
+0000008a <__do_clear_bss>:
+  8a:	22 e0       	ldi	r18, 0x02	; 2
+  8c:	a0 e2       	ldi	r26, 0x20	; 32
+  8e:	b1 e0       	ldi	r27, 0x01	; 1
+  90:	01 c0       	rjmp	.+2      	; 0x94 <.do_clear_bss_start>
+
+00000092 <.do_clear_bss_loop>:
+  92:	1d 92       	st	X+, r1
+
+00000094 <.do_clear_bss_start>:
+  94:	a8 32       	cpi	r26, 0x28	; 40
+  96:	b2 07       	cpc	r27, r18
+  98:	e1 f7       	brne	.-8      	; 0x92 <.do_clear_bss_loop>
+  9a:	0e 94 9d 01 	call	0x33a	; 0x33a <main>
+  9e:	0c 94 07 02 	jmp	0x40e	; 0x40e <_exit>
+
+000000a2 <__bad_interrupt>:
+  a2:	0c 94 00 00 	jmp	0	; 0x0 <__vectors>
+
+000000a6 <__vector_18>:
+void buzzer_off (void)
+{
+	unsigned char port_restore = 0;
+	port_restore = PINC;
+	port_restore = port_restore & 0xF7;
+	PORTC = port_restore;
+  a6:	1f 92       	push	r1
+  a8:	0f 92       	push	r0
+  aa:	0f b6       	in	r0, 0x3f	; 63
+  ac:	0f 92       	push	r0
+  ae:	11 24       	eor	r1, r1
+  b0:	2f 93       	push	r18
+  b2:	3f 93       	push	r19
+  b4:	4f 93       	push	r20
+  b6:	5f 93       	push	r21
+  b8:	8f 93       	push	r24
+  ba:	9f 93       	push	r25
+  bc:	ef 93       	push	r30
+  be:	ff 93       	push	r31
+  c0:	20 91 c0 00 	lds	r18, 0x00C0	; 0x8000c0 <__DATA_REGION_ORIGIN__+0x60>
+  c4:	30 91 c6 00 	lds	r19, 0x00C6	; 0x8000c6 <__DATA_REGION_ORIGIN__+0x66>
+  c8:	28 71       	andi	r18, 0x18	; 24
+  ca:	80 91 25 01 	lds	r24, 0x0125	; 0x800125 <UART_RxHead>
+  ce:	90 e0       	ldi	r25, 0x00	; 0
+  d0:	01 96       	adiw	r24, 0x01	; 1
+  d2:	8f 77       	andi	r24, 0x7F	; 127
+  d4:	99 27       	eor	r25, r25
+  d6:	40 91 24 01 	lds	r20, 0x0124	; 0x800124 <UART_RxTail>
+  da:	50 e0       	ldi	r21, 0x00	; 0
+  dc:	84 17       	cp	r24, r20
+  de:	95 07       	cpc	r25, r21
+  e0:	39 f0       	breq	.+14     	; 0xf0 <__vector_18+0x4a>
+  e2:	80 93 25 01 	sts	0x0125, r24	; 0x800125 <UART_RxHead>
+  e6:	fc 01       	movw	r30, r24
+  e8:	e8 5d       	subi	r30, 0xD8	; 216
+  ea:	fe 4f       	sbci	r31, 0xFE	; 254
+  ec:	30 83       	st	Z, r19
+  ee:	01 c0       	rjmp	.+2      	; 0xf2 <__vector_18+0x4c>
+  f0:	22 e0       	ldi	r18, 0x02	; 2
+  f2:	20 93 23 01 	sts	0x0123, r18	; 0x800123 <UART_LastRxError>
+  f6:	ff 91       	pop	r31
+  f8:	ef 91       	pop	r30
+  fa:	9f 91       	pop	r25
+  fc:	8f 91       	pop	r24
+  fe:	5f 91       	pop	r21
+ 100:	4f 91       	pop	r20
+ 102:	3f 91       	pop	r19
+ 104:	2f 91       	pop	r18
+ 106:	0f 90       	pop	r0
+ 108:	0f be       	out	0x3f, r0	; 63
+ 10a:	0f 90       	pop	r0
+ 10c:	1f 90       	pop	r1
+ 10e:	18 95       	reti
+
+00000110 <__vector_19>:
+ 110:	1f 92       	push	r1
+ 112:	0f 92       	push	r0
+ 114:	0f b6       	in	r0, 0x3f	; 63
+ 116:	0f 92       	push	r0
+ 118:	11 24       	eor	r1, r1
+ 11a:	8f 93       	push	r24
+ 11c:	9f 93       	push	r25
+ 11e:	ef 93       	push	r30
+ 120:	ff 93       	push	r31
+ 122:	90 91 27 01 	lds	r25, 0x0127	; 0x800127 <UART_TxHead>
+ 126:	80 91 26 01 	lds	r24, 0x0126	; 0x800126 <UART_TxTail>
+ 12a:	98 17       	cp	r25, r24
+ 12c:	79 f0       	breq	.+30     	; 0x14c <__vector_19+0x3c>
+ 12e:	80 91 26 01 	lds	r24, 0x0126	; 0x800126 <UART_TxTail>
+ 132:	90 e0       	ldi	r25, 0x00	; 0
+ 134:	01 96       	adiw	r24, 0x01	; 1
+ 136:	8f 77       	andi	r24, 0x7F	; 127
+ 138:	99 27       	eor	r25, r25
+ 13a:	80 93 26 01 	sts	0x0126, r24	; 0x800126 <UART_TxTail>
+ 13e:	fc 01       	movw	r30, r24
+ 140:	e8 55       	subi	r30, 0x58	; 88
+ 142:	fe 4f       	sbci	r31, 0xFE	; 254
+ 144:	80 81       	ld	r24, Z
+ 146:	80 93 c6 00 	sts	0x00C6, r24	; 0x8000c6 <__DATA_REGION_ORIGIN__+0x66>
+ 14a:	05 c0       	rjmp	.+10     	; 0x156 <__vector_19+0x46>
+ 14c:	e1 ec       	ldi	r30, 0xC1	; 193
+ 14e:	f0 e0       	ldi	r31, 0x00	; 0
+ 150:	80 81       	ld	r24, Z
+ 152:	8f 7d       	andi	r24, 0xDF	; 223
+ 154:	80 83       	st	Z, r24
+ 156:	ff 91       	pop	r31
+ 158:	ef 91       	pop	r30
+ 15a:	9f 91       	pop	r25
+ 15c:	8f 91       	pop	r24
+ 15e:	0f 90       	pop	r0
+ 160:	0f be       	out	0x3f, r0	; 63
+ 162:	0f 90       	pop	r0
+ 164:	1f 90       	pop	r1
+ 166:	18 95       	reti
+
+00000168 <uart0_init>:
+ 168:	f8 94       	cli
+ 16a:	10 92 27 01 	sts	0x0127, r1	; 0x800127 <UART_TxHead>
+ 16e:	10 92 26 01 	sts	0x0126, r1	; 0x800126 <UART_TxTail>
+ 172:	10 92 25 01 	sts	0x0125, r1	; 0x800125 <UART_RxHead>
+ 176:	10 92 24 01 	sts	0x0124, r1	; 0x800124 <UART_RxTail>
+ 17a:	78 94       	sei
+ 17c:	99 23       	and	r25, r25
+ 17e:	24 f4       	brge	.+8      	; 0x188 <uart0_init+0x20>
+ 180:	22 e0       	ldi	r18, 0x02	; 2
+ 182:	20 93 c0 00 	sts	0x00C0, r18	; 0x8000c0 <__DATA_REGION_ORIGIN__+0x60>
+ 186:	9f 77       	andi	r25, 0x7F	; 127
+ 188:	90 93 c5 00 	sts	0x00C5, r25	; 0x8000c5 <__DATA_REGION_ORIGIN__+0x65>
+ 18c:	80 93 c4 00 	sts	0x00C4, r24	; 0x8000c4 <__DATA_REGION_ORIGIN__+0x64>
+ 190:	88 e9       	ldi	r24, 0x98	; 152
+ 192:	80 93 c1 00 	sts	0x00C1, r24	; 0x8000c1 <__DATA_REGION_ORIGIN__+0x61>
+ 196:	86 e0       	ldi	r24, 0x06	; 6
+ 198:	80 93 c2 00 	sts	0x00C2, r24	; 0x8000c2 <__DATA_REGION_ORIGIN__+0x62>
+ 19c:	08 95       	ret
+
+0000019e <uart0_getc>:
+ 19e:	f8 94       	cli
+ 1a0:	90 91 25 01 	lds	r25, 0x0125	; 0x800125 <UART_RxHead>
+ 1a4:	80 91 24 01 	lds	r24, 0x0124	; 0x800124 <UART_RxTail>
+ 1a8:	98 13       	cpse	r25, r24
+ 1aa:	04 c0       	rjmp	.+8      	; 0x1b4 <uart0_getc+0x16>
+ 1ac:	78 94       	sei
+ 1ae:	80 e0       	ldi	r24, 0x00	; 0
+ 1b0:	91 e0       	ldi	r25, 0x01	; 1
+ 1b2:	08 95       	ret
+ 1b4:	78 94       	sei
+ 1b6:	80 91 24 01 	lds	r24, 0x0124	; 0x800124 <UART_RxTail>
+ 1ba:	90 e0       	ldi	r25, 0x00	; 0
+ 1bc:	01 96       	adiw	r24, 0x01	; 1
+ 1be:	8f 77       	andi	r24, 0x7F	; 127
+ 1c0:	99 27       	eor	r25, r25
+ 1c2:	80 93 24 01 	sts	0x0124, r24	; 0x800124 <UART_RxTail>
+ 1c6:	fc 01       	movw	r30, r24
+ 1c8:	e8 5d       	subi	r30, 0xD8	; 216
+ 1ca:	fe 4f       	sbci	r31, 0xFE	; 254
+ 1cc:	20 81       	ld	r18, Z
+ 1ce:	80 91 23 01 	lds	r24, 0x0123	; 0x800123 <UART_LastRxError>
+ 1d2:	90 e0       	ldi	r25, 0x00	; 0
+ 1d4:	98 2f       	mov	r25, r24
+ 1d6:	88 27       	eor	r24, r24
+ 1d8:	82 0f       	add	r24, r18
+ 1da:	91 1d       	adc	r25, r1
+ 1dc:	08 95       	ret
+
+000001de <uart0_putc>:
+ 1de:	40 91 27 01 	lds	r20, 0x0127	; 0x800127 <UART_TxHead>
+ 1e2:	50 e0       	ldi	r21, 0x00	; 0
+ 1e4:	4f 5f       	subi	r20, 0xFF	; 255
+ 1e6:	5f 4f       	sbci	r21, 0xFF	; 255
+ 1e8:	4f 77       	andi	r20, 0x7F	; 127
+ 1ea:	55 27       	eor	r21, r21
+ 1ec:	20 91 26 01 	lds	r18, 0x0126	; 0x800126 <UART_TxTail>
+ 1f0:	30 e0       	ldi	r19, 0x00	; 0
+ 1f2:	42 17       	cp	r20, r18
+ 1f4:	53 07       	cpc	r21, r19
+ 1f6:	d1 f3       	breq	.-12     	; 0x1ec <uart0_putc+0xe>
+ 1f8:	fa 01       	movw	r30, r20
+ 1fa:	e8 55       	subi	r30, 0x58	; 88
+ 1fc:	fe 4f       	sbci	r31, 0xFE	; 254
+ 1fe:	80 83       	st	Z, r24
+ 200:	40 93 27 01 	sts	0x0127, r20	; 0x800127 <UART_TxHead>
+ 204:	e1 ec       	ldi	r30, 0xC1	; 193
+ 206:	f0 e0       	ldi	r31, 0x00	; 0
+ 208:	80 81       	ld	r24, Z
+ 20a:	80 62       	ori	r24, 0x20	; 32
+ 20c:	80 83       	st	Z, r24
+ 20e:	08 95       	ret
+
+00000210 <uart0_puts>:
+ 210:	cf 93       	push	r28
+ 212:	df 93       	push	r29
+ 214:	ec 01       	movw	r28, r24
+ 216:	88 81       	ld	r24, Y
+ 218:	88 23       	and	r24, r24
+ 21a:	31 f0       	breq	.+12     	; 0x228 <uart0_puts+0x18>
+ 21c:	21 96       	adiw	r28, 0x01	; 1
+ 21e:	0e 94 ef 00 	call	0x1de	; 0x1de <uart0_putc>
+ 222:	89 91       	ld	r24, Y+
+ 224:	81 11       	cpse	r24, r1
+ 226:	fb cf       	rjmp	.-10     	; 0x21e <uart0_puts+0xe>
+ 228:	df 91       	pop	r29
+ 22a:	cf 91       	pop	r28
+ 22c:	08 95       	ret
+
+0000022e <uart0_flush>:
+ 22e:	f8 94       	cli
+ 230:	80 91 24 01 	lds	r24, 0x0124	; 0x800124 <UART_RxTail>
+ 234:	80 93 25 01 	sts	0x0125, r24	; 0x800125 <UART_RxHead>
+ 238:	78 94       	sei
+ 23a:	08 95       	ret
+
+0000023c <uart0_readByte>:
+ 23c:	0e 94 cf 00 	call	0x19e	; 0x19e <uart0_getc>
+ 240:	91 11       	cpse	r25, r1
+ 242:	03 c0       	rjmp	.+6      	; 0x24a <uart0_readByte+0xe>
+ 244:	88 23       	and	r24, r24
+ 246:	19 f0       	breq	.+6      	; 0x24e <uart0_readByte+0x12>
+ 248:	08 95       	ret
+ 24a:	8f ef       	ldi	r24, 0xFF	; 255
+ 24c:	08 95       	ret
+ 24e:	8f ef       	ldi	r24, 0xFF	; 255
+ 250:	08 95       	ret
+
+00000252 <adc_pin_config>:
+ 252:	17 b8       	out	0x07, r1	; 7
+ 254:	18 b8       	out	0x08, r1	; 8
+ 256:	08 95       	ret
+
+00000258 <adc_init>:
+ 258:	ea e7       	ldi	r30, 0x7A	; 122
+ 25a:	f0 e0       	ldi	r31, 0x00	; 0
+ 25c:	10 82       	st	Z, r1
+ 25e:	80 e2       	ldi	r24, 0x20	; 32
+ 260:	80 93 7c 00 	sts	0x007C, r24	; 0x80007c <__DATA_REGION_ORIGIN__+0x1c>
+ 264:	80 e8       	ldi	r24, 0x80	; 128
+ 266:	80 bf       	out	0x30, r24	; 48
+ 268:	86 e8       	ldi	r24, 0x86	; 134
+ 26a:	80 83       	st	Z, r24
+ 26c:	08 95       	ret
+
+0000026e <ADC_Conversion>:
+ 26e:	87 70       	andi	r24, 0x07	; 7
+ 270:	80 62       	ori	r24, 0x20	; 32
+ 272:	80 93 7c 00 	sts	0x007C, r24	; 0x80007c <__DATA_REGION_ORIGIN__+0x1c>
+ 276:	ea e7       	ldi	r30, 0x7A	; 122
+ 278:	f0 e0       	ldi	r31, 0x00	; 0
+ 27a:	80 81       	ld	r24, Z
+ 27c:	80 64       	ori	r24, 0x40	; 64
+ 27e:	80 83       	st	Z, r24
+ 280:	80 81       	ld	r24, Z
+ 282:	84 ff       	sbrs	r24, 4
+ 284:	fd cf       	rjmp	.-6      	; 0x280 <ADC_Conversion+0x12>
+ 286:	80 91 79 00 	lds	r24, 0x0079	; 0x800079 <__DATA_REGION_ORIGIN__+0x19>
+ 28a:	ea e7       	ldi	r30, 0x7A	; 122
+ 28c:	f0 e0       	ldi	r31, 0x00	; 0
+ 28e:	90 81       	ld	r25, Z
+ 290:	90 61       	ori	r25, 0x10	; 16
+ 292:	90 83       	st	Z, r25
+ 294:	08 95       	ret
+
+00000296 <velocity>:
+ 296:	10 92 89 00 	sts	0x0089, r1	; 0x800089 <__DATA_REGION_ORIGIN__+0x29>
+ 29a:	80 93 88 00 	sts	0x0088, r24	; 0x800088 <__DATA_REGION_ORIGIN__+0x28>
+ 29e:	10 92 8b 00 	sts	0x008B, r1	; 0x80008b <__DATA_REGION_ORIGIN__+0x2b>
+ 2a2:	60 93 8a 00 	sts	0x008A, r22	; 0x80008a <__DATA_REGION_ORIGIN__+0x2a>
+ 2a6:	08 95       	ret
+
+000002a8 <motion_pin_config>:
+ 2a8:	84 b1       	in	r24, 0x04	; 4
+ 2aa:	8f 60       	ori	r24, 0x0F	; 15
+ 2ac:	84 b9       	out	0x04, r24	; 4
+ 2ae:	85 b1       	in	r24, 0x05	; 5
+ 2b0:	80 7f       	andi	r24, 0xF0	; 240
+ 2b2:	85 b9       	out	0x05, r24	; 5
+ 2b4:	8a b1       	in	r24, 0x0a	; 10
+ 2b6:	80 63       	ori	r24, 0x30	; 48
+ 2b8:	8a b9       	out	0x0a, r24	; 10
+ 2ba:	8b b1       	in	r24, 0x0b	; 11
+ 2bc:	80 63       	ori	r24, 0x30	; 48
+ 2be:	8b b9       	out	0x0b, r24	; 11
+ 2c0:	08 95       	ret
+
+000002c2 <buzzer_pin_config>:
+ 2c2:	3b 9a       	sbi	0x07, 3	; 7
+ 2c4:	43 98       	cbi	0x08, 3	; 8
+ 2c6:	08 95       	ret
+
+000002c8 <port_init>:
+ 2c8:	0e 94 29 01 	call	0x252	; 0x252 <adc_pin_config>
+ 2cc:	0e 94 54 01 	call	0x2a8	; 0x2a8 <motion_pin_config>
+ 2d0:	0e 94 61 01 	call	0x2c2	; 0x2c2 <buzzer_pin_config>
+ 2d4:	08 95       	ret
+
+000002d6 <motion_set>:
+ 2d6:	95 b1       	in	r25, 0x05	; 5
+ 2d8:	90 7f       	andi	r25, 0xF0	; 240
+ 2da:	8f 70       	andi	r24, 0x0F	; 15
+ 2dc:	98 2b       	or	r25, r24
+ 2de:	95 b9       	out	0x05, r25	; 5
+ 2e0:	08 95       	ret
+
+000002e2 <forward>:
+ 2e2:	86 e0       	ldi	r24, 0x06	; 6
+ 2e4:	0e 94 6b 01 	call	0x2d6	; 0x2d6 <motion_set>
+ 2e8:	08 95       	ret
+
+000002ea <stop>:
+ 2ea:	80 e0       	ldi	r24, 0x00	; 0
+ 2ec:	0e 94 6b 01 	call	0x2d6	; 0x2d6 <motion_set>
+ 2f0:	08 95       	ret
+
+000002f2 <timer1_init>:
+ 2f2:	e1 e8       	ldi	r30, 0x81	; 129
+ 2f4:	f0 e0       	ldi	r31, 0x00	; 0
+ 2f6:	10 82       	st	Z, r1
+ 2f8:	8f ef       	ldi	r24, 0xFF	; 255
+ 2fa:	80 93 85 00 	sts	0x0085, r24	; 0x800085 <__DATA_REGION_ORIGIN__+0x25>
+ 2fe:	91 e0       	ldi	r25, 0x01	; 1
+ 300:	90 93 84 00 	sts	0x0084, r25	; 0x800084 <__DATA_REGION_ORIGIN__+0x24>
+ 304:	10 92 89 00 	sts	0x0089, r1	; 0x800089 <__DATA_REGION_ORIGIN__+0x29>
+ 308:	80 93 88 00 	sts	0x0088, r24	; 0x800088 <__DATA_REGION_ORIGIN__+0x28>
+ 30c:	10 92 8b 00 	sts	0x008B, r1	; 0x80008b <__DATA_REGION_ORIGIN__+0x2b>
+ 310:	80 93 8a 00 	sts	0x008A, r24	; 0x80008a <__DATA_REGION_ORIGIN__+0x2a>
+ 314:	10 92 87 00 	sts	0x0087, r1	; 0x800087 <__DATA_REGION_ORIGIN__+0x27>
+ 318:	80 93 86 00 	sts	0x0086, r24	; 0x800086 <__DATA_REGION_ORIGIN__+0x26>
+ 31c:	81 ea       	ldi	r24, 0xA1	; 161
+ 31e:	80 93 80 00 	sts	0x0080, r24	; 0x800080 <__DATA_REGION_ORIGIN__+0x20>
+ 322:	8d e0       	ldi	r24, 0x0D	; 13
+ 324:	80 83       	st	Z, r24
+ 326:	08 95       	ret
+
+00000328 <init_devices>:
+}
+
+void init_devices (void)
+{
+	cli();         //Clears the global interrupts
+ 328:	f8 94       	cli
+	port_init();
+ 32a:	0e 94 64 01 	call	0x2c8	; 0x2c8 <port_init>
+	timer1_init();
+ 32e:	0e 94 79 01 	call	0x2f2	; 0x2f2 <timer1_init>
+	adc_init();
+ 332:	0e 94 2c 01 	call	0x258	; 0x258 <adc_init>
+	//uart0_init();
+	sei();         //Enables the global interrupts
+ 336:	78 94       	sei
+ 338:	08 95       	ret
+
+0000033a <main>:
+
+
+//Main Function
+
+int main(void) {
+	init_devices();
+ 33a:	0e 94 94 01 	call	0x328	; 0x328 <init_devices>
+	char receive_data;
+
+	uart0_init(UART_BAUD_SELECT(9600, F_CPU));
+ 33e:	87 e6       	ldi	r24, 0x67	; 103
+ 340:	90 e0       	ldi	r25, 0x00	; 0
+ 342:	0e 94 b4 00 	call	0x168	; 0x168 <uart0_init>
+	uart0_flush();
+ 346:	0e 94 17 01 	call	0x22e	; 0x22e <uart0_flush>
+	uart0_puts("*** Arduino Uno UART0 ECHO ***\n");
+ 34a:	80 e0       	ldi	r24, 0x00	; 0
+ 34c:	91 e0       	ldi	r25, 0x01	; 1
+ 34e:	0e 94 08 01 	call	0x210	; 0x210 <uart0_puts>
+			velocity(VELOCITY_MAX,VELOCITY_MIN);      // Run robot left wheel at max velocity and right wheel
+		}
+
+		if((Right_white_line>THRESHOLD) && (flag==0)) // Is right Whiteline is not within threshold limit
+		{
+			flag=1;
+ 352:	c1 e0       	ldi	r28, 0x01	; 1
+		Left_white_line = ADC_Conversion(2);	//Getting data of Left WL Sensor
+		Center_white_line = ADC_Conversion(4);	//Getting data of Center WL Sensor
+		Right_white_line = ADC_Conversion(5);	//Getting data of Right WL Sensor
+		
+
+		flag=0;
+ 354:	d0 e0       	ldi	r29, 0x00	; 0
+	uart0_puts("*** Arduino Uno UART0 ECHO ***\n");
+
+	while(1)
+	{
+
+		receive_data = uart0_readByte();
+ 356:	0e 94 1e 01 	call	0x23c	; 0x23c <uart0_readByte>
+		if(receive_data == 0x38)        //ASCII value of 8
+ 35a:	88 33       	cpi	r24, 0x38	; 56
+ 35c:	19 f4       	brne	.+6      	; 0x364 <main+0x2a>
+		{
+			stop(); 
+ 35e:	0e 94 75 01 	call	0x2ea	; 0x2ea <stop>
+ 362:	f9 cf       	rjmp	.-14     	; 0x356 <main+0x1c>
+		{
+	unsigned char flag ;
+
+//	init_devices();
+
+	velocity(VELOCITY_MAX,VELOCITY_MAX);    // Set the speed to max velocity
+ 364:	62 e3       	ldi	r22, 0x32	; 50
+ 366:	82 e3       	ldi	r24, 0x32	; 50
+ 368:	0e 94 4b 01 	call	0x296	; 0x296 <velocity>
+	forward();                              // start to move froward
+ 36c:	0e 94 71 01 	call	0x2e2	; 0x2e2 <forward>
+	//while(1)
+	
+		Left_white_line = ADC_Conversion(2);	//Getting data of Left WL Sensor
+ 370:	82 e0       	ldi	r24, 0x02	; 2
+ 372:	0e 94 37 01 	call	0x26e	; 0x26e <ADC_Conversion>
+ 376:	80 93 22 01 	sts	0x0122, r24	; 0x800122 <Left_white_line>
+		Center_white_line = ADC_Conversion(4);	//Getting data of Center WL Sensor
+ 37a:	84 e0       	ldi	r24, 0x04	; 4
+ 37c:	0e 94 37 01 	call	0x26e	; 0x26e <ADC_Conversion>
+ 380:	80 93 21 01 	sts	0x0121, r24	; 0x800121 <Center_white_line>
+		Right_white_line = ADC_Conversion(5);	//Getting data of Right WL Sensor
+ 384:	85 e0       	ldi	r24, 0x05	; 5
+ 386:	0e 94 37 01 	call	0x26e	; 0x26e <ADC_Conversion>
+ 38a:	80 93 20 01 	sts	0x0120, r24	; 0x800120 <__data_end>
+		
+
+		flag=0;
+
+		if(Center_white_line<THRESHOLD)               // Is middle Whiteline is within threshold limit
+ 38e:	80 91 21 01 	lds	r24, 0x0121	; 0x800121 <Center_white_line>
+ 392:	8e 31       	cpi	r24, 0x1E	; 30
+ 394:	68 f5       	brcc	.+90     	; 0x3f0 <main+0xb6>
+		{
+			flag=1;
+			velocity(VELOCITY_MAX,VELOCITY_MAX);      // Run robot at max velocity
+ 396:	62 e3       	ldi	r22, 0x32	; 50
+ 398:	82 e3       	ldi	r24, 0x32	; 50
+ 39a:	0e 94 4b 01 	call	0x296	; 0x296 <velocity>
+		}
+
+		if(((Left_white_line-50)>THRESHOLD) && (flag==0))  // Is left Whiteline is not within threshold limit
+ 39e:	80 91 22 01 	lds	r24, 0x0122	; 0x800122 <Left_white_line>
+ 3a2:	90 e0       	ldi	r25, 0x00	; 0
+ 3a4:	c2 97       	sbiw	r24, 0x32	; 50
+ 3a6:	4f 97       	sbiw	r24, 0x1f	; 31
+ 3a8:	54 f5       	brge	.+84     	; 0x3fe <main+0xc4>
+
+		flag=0;
+
+		if(Center_white_line<THRESHOLD)               // Is middle Whiteline is within threshold limit
+		{
+			flag=1;
+ 3aa:	2c 2f       	mov	r18, r28
+ 3ac:	0a c0       	rjmp	.+20     	; 0x3c2 <main+0x88>
+		}
+
+		if(((Left_white_line-50)>THRESHOLD) && (flag==0))  // Is left Whiteline is not within threshold limit
+		{
+			flag=1;
+			velocity(VELOCITY_MAX,VELOCITY_MIN);      // Run robot left wheel at max velocity and right wheel
+ 3ae:	63 e2       	ldi	r22, 0x23	; 35
+ 3b0:	82 e3       	ldi	r24, 0x32	; 50
+ 3b2:	0e 94 4b 01 	call	0x296	; 0x296 <velocity>
+ 3b6:	23 c0       	rjmp	.+70     	; 0x3fe <main+0xc4>
+		}
+
+		if((Right_white_line>THRESHOLD) && (flag==0)) // Is right Whiteline is not within threshold limit
+		{
+			flag=1;
+			velocity(VELOCITY_MIN,VELOCITY_MAX);      // Run robot right wheel at max velocity and left wheel
+ 3b8:	62 e3       	ldi	r22, 0x32	; 50
+ 3ba:	83 e2       	ldi	r24, 0x23	; 35
+ 3bc:	0e 94 4b 01 	call	0x296	; 0x296 <velocity>
+			velocity(VELOCITY_MAX,VELOCITY_MIN);      // Run robot left wheel at max velocity and right wheel
+		}
+
+		if((Right_white_line>THRESHOLD) && (flag==0)) // Is right Whiteline is not within threshold limit
+		{
+			flag=1;
+ 3c0:	2c 2f       	mov	r18, r28
+			velocity(VELOCITY_MIN,VELOCITY_MAX);      // Run robot right wheel at max velocity and left wheel
+		}
+
+		if(Center_white_line>THRESHOLD && (Left_white_line-50)>THRESHOLD && Right_white_line>THRESHOLD && (flag == 0))
+ 3c2:	80 91 21 01 	lds	r24, 0x0121	; 0x800121 <Center_white_line>
+ 3c6:	8f 31       	cpi	r24, 0x1F	; 31
+ 3c8:	30 f2       	brcs	.-116    	; 0x356 <main+0x1c>
+ 3ca:	80 91 22 01 	lds	r24, 0x0122	; 0x800122 <Left_white_line>
+ 3ce:	90 e0       	ldi	r25, 0x00	; 0
+ 3d0:	c2 97       	sbiw	r24, 0x32	; 50
+ 3d2:	4f 97       	sbiw	r24, 0x1f	; 31
+ 3d4:	0c f4       	brge	.+2      	; 0x3d8 <main+0x9e>
+ 3d6:	bf cf       	rjmp	.-130    	; 0x356 <main+0x1c>
+ 3d8:	80 91 20 01 	lds	r24, 0x0120	; 0x800120 <__data_end>
+ 3dc:	8f 31       	cpi	r24, 0x1F	; 31
+ 3de:	08 f4       	brcc	.+2      	; 0x3e2 <main+0xa8>
+ 3e0:	ba cf       	rjmp	.-140    	; 0x356 <main+0x1c>
+ 3e2:	21 11       	cpse	r18, r1
+ 3e4:	b8 cf       	rjmp	.-144    	; 0x356 <main+0x1c>
+		// if all Whiteline sensor are not within threshold limit
+		{
+			flag=1;
+			velocity(VELOCITY_LOW,VELOCITY_LOW);      // stop the robot
+ 3e6:	6d 2f       	mov	r22, r29
+ 3e8:	8d 2f       	mov	r24, r29
+ 3ea:	0e 94 4b 01 	call	0x296	; 0x296 <velocity>
+ 3ee:	b3 cf       	rjmp	.-154    	; 0x356 <main+0x1c>
+		{
+			flag=1;
+			velocity(VELOCITY_MAX,VELOCITY_MAX);      // Run robot at max velocity
+		}
+
+		if(((Left_white_line-50)>THRESHOLD) && (flag==0))  // Is left Whiteline is not within threshold limit
+ 3f0:	80 91 22 01 	lds	r24, 0x0122	; 0x800122 <Left_white_line>
+ 3f4:	90 e0       	ldi	r25, 0x00	; 0
+ 3f6:	c2 97       	sbiw	r24, 0x32	; 50
+ 3f8:	4f 97       	sbiw	r24, 0x1f	; 31
+ 3fa:	1c f0       	brlt	.+6      	; 0x402 <__LOCK_REGION_LENGTH__+0x2>
+ 3fc:	d8 cf       	rjmp	.-80     	; 0x3ae <main+0x74>
+			velocity(VELOCITY_MAX,VELOCITY_MIN);      // Run robot left wheel at max velocity and right wheel
+		}
+
+		if((Right_white_line>THRESHOLD) && (flag==0)) // Is right Whiteline is not within threshold limit
+		{
+			flag=1;
+ 3fe:	2c 2f       	mov	r18, r28
+ 400:	e0 cf       	rjmp	.-64     	; 0x3c2 <main+0x88>
+		{
+			flag=1;
+			velocity(VELOCITY_MAX,VELOCITY_MIN);      // Run robot left wheel at max velocity and right wheel
+		}
+
+		if((Right_white_line>THRESHOLD) && (flag==0)) // Is right Whiteline is not within threshold limit
+ 402:	80 91 20 01 	lds	r24, 0x0120	; 0x800120 <__data_end>
+ 406:	8f 31       	cpi	r24, 0x1F	; 31
+ 408:	b8 f6       	brcc	.-82     	; 0x3b8 <main+0x7e>
+		Left_white_line = ADC_Conversion(2);	//Getting data of Left WL Sensor
+		Center_white_line = ADC_Conversion(4);	//Getting data of Center WL Sensor
+		Right_white_line = ADC_Conversion(5);	//Getting data of Right WL Sensor
+		
+
+		flag=0;
+ 40a:	2d 2f       	mov	r18, r29
+ 40c:	da cf       	rjmp	.-76     	; 0x3c2 <main+0x88>
+
+0000040e <_exit>:
+ 40e:	f8 94       	cli
+
+00000410 <__stop_program>:
+ 410:	ff cf       	rjmp	.-2      	; 0x410 <__stop_program>
